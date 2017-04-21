@@ -13,14 +13,17 @@ import java.io.Serializable;
  */
 public class Usuari implements Serializable {
 
-    private String id;
+    private int idusuaris;
     private String password;
     private String nom;
+    private double dinero;
+    private String admin;
 
-    public Usuari(String id, String password, String n) {
-        this.id = id;
+    public Usuari(String password, String n) {
         this.password = password;
-        nom=n;
+        this.nom=n;
+        this.admin="F";
+        this.dinero=100;
     }
 
     public Usuari() {
@@ -35,13 +38,14 @@ public class Usuari implements Serializable {
         this.nom = nom;
     }
 
-    public String getId() {
-        return id;
+    public int getIdusuaris() {
+        return idusuaris;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdusuaris(int idusuaris) {
+        this.idusuaris = idusuaris;
     }
+
 
     public String getPassword() {
         return password;
@@ -51,10 +55,28 @@ public class Usuari implements Serializable {
         this.password = password;
     }
 
+    public double getDinero() {
+        return dinero;
+    }
+
+    public void setDinero(double dinero) {
+        this.dinero = dinero;
+    }
+
+    public String getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = admin;
+    }
+
+ 
+
     //sense el password
     @Override
     public String toString() {
-        return "Usuari{" + "id=" + id + ", nom=" + nom + ", password="+password+'}';
+        return "Usuari{" + "id=" + idusuaris + ", nom=" + nom + ", password="+password+'}';
         
     }
 }

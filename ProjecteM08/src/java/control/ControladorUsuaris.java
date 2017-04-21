@@ -41,9 +41,9 @@ response.setContentType("text/html;charset=UTF-8");
                 System.out.println("Validando sin password llega al servlet?");
                 Usuari u = (Usuari) request.getAttribute("usu");
                 System.out.println("Usuari en servlet, login="+u);
-                String nom=bd.validarUsuari(u);
+                Usuari user=bd.validarUsuari(u);
                 //passo el nom a la vista, benvinguda.jsp
-                request.setAttribute("nom", nom);
+                request.setAttribute("user", user);
                 RequestDispatcher rd = request.getRequestDispatcher("benvinguda.jsp");
                 rd.forward(request, response);
             } else {

@@ -18,9 +18,9 @@
     <body>
         <h1> Entrada al sistema </h1>
         <jsp:setProperty name="usu" property="*" />
-        <% if (request.getParameter("id") == null) { %>
+        <% if (request.getParameter("nom") == null) { %>
         <form method="post">
-            email o id<input type="text" name="id" size="20" required/><br/>
+            nom<input type="text" name="nom" size="20" required/><br/>
             password    <input type="password" name="password" size="20"  required/> <br/>
             <input type="submit" value="Entrar"/>
         </form>

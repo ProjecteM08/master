@@ -4,6 +4,7 @@
     Author     : montse
 --%>
 
+<%@page import="model.Usuari"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,8 +13,20 @@
         <title>Benvinguda</title>
     </head>
     <body>
-        <% String nom=(String)request.getAttribute("nom");
+        <% Usuari user=(Usuari)request.getAttribute("user");
+        if(user.getAdmin()=="T"){
+         %>
+         <h1>Hola admin</h1>
+            <%  
+        }else{
+         %>
+         
+          <h1>Hola parguela</h1>
+           <%    
+        }
+        
+
         %>
-        <h1>Hola <%=nom%></h1>
+       
     </body>
 </html>

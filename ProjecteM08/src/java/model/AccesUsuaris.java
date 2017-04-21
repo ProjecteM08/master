@@ -25,7 +25,7 @@ public class AccesUsuaris {
     public AccesUsuaris() throws Exception {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUser("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("yato");
        // dataSource.setServerName("elnomdelserver.org");
         dataSource.setDatabaseName("m8");
         con=dataSource.getConnection();
@@ -39,18 +39,26 @@ public class AccesUsuaris {
 //    }
 
     //retorna el nom de l'usuari valid
-    public String validarUsuari(Usuari u) throws UsuariInexistentException, PasswordIncorrecteException, SQLException {
+    public Usuari validarUsuari(Usuari u) throws UsuariInexistentException, PasswordIncorrecteException, SQLException {
         //filtrar getNom() d'entrada "maliciosa"        
-        String text = "select * from t_usuaris where id='" + u.getId() + "'";
+        String text = "select * from usuaris where nom='" + u.getNom()+ "'";
         ResultSet res = sentencia.executeQuery(text);
-        String p2 = getEncryptedPassword(u.getPassword());
+//        String p2 = getEncryptedPassword(u.getPassword());
+
         if (res.next()) { /* si hi ha un registre*/
             /* si coincideix la clau*/
 
-            if (!res.getString("password").equals(p2)) {
+            if (!res.getString("password").equals(u.getPassword())) {
                 throw new PasswordIncorrecteException();
             } else {
-                return res.getString("nom");
+                Usuari user=new Usuari();
+                user.setAdmin(res.getString("admin"));
+                user.setDinero(res.getDouble("dinero"));
+                user.setIdusuaris(res.getInt("idusuaris"));
+                user.setNom(res.getString("nom"));
+                user.setPassword(res.getString("password"));
+                
+                return user;
             }
         } else {
             throw new UsuariInexistentException(); /* no hi ha registre, per tant, no hi ha usuari*/
@@ -61,8 +69,8 @@ public class AccesUsuaris {
     /* donar d'alta un nou usuari*/
     public void registrarUsuari(Usuari u) throws UsuariRepetitException {
         try {
-            String p2 = getEncryptedPassword(u.getPassword());
-            String text = "insert into t_usuaris(id, password, nom) values ('" + u.getId() + "','" + p2 + "','" + u.getNom() + "')";
+//            String p2 = getEncryptedPassword(u.getPassword());
+            String text = "insert into usuaris(password, nom, admin, dinero) values ('" + u.getPassword()+ "','" + u.getNom() + "','" + u.getAdmin()+ "','" + u.getDinero() + "')";
             sentencia.executeUpdate(text);
         } catch (SQLException e) {
             System.out.println(e);
