@@ -37,6 +37,7 @@ response.setContentType("text/html;charset=UTF-8");
         
             AccesUsuaris bd = new AccesUsuaris();
             String op = request.getParameter("accio");
+            op="login";
             if (op.equals("login")) {
                 System.out.println("Validando sin password llega al servlet?");
                 Usuari u = (Usuari) request.getAttribute("usu");

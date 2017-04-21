@@ -25,7 +25,7 @@ public class AccesUsuaris {
     public AccesUsuaris() throws Exception {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUser("root");
-        dataSource.setPassword("yato");
+        dataSource.setPassword("");
        // dataSource.setServerName("elnomdelserver.org");
         dataSource.setDatabaseName("m8");
         con=dataSource.getConnection();
