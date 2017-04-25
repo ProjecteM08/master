@@ -18,7 +18,7 @@ import model.Usuari;
  * @author montse
  * @version març 2017
  */
-public class ControladorCompras extends HttpServlet {
+public class ControladorProductos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,18 +38,14 @@ response.setContentType("text/html;charset=UTF-8");
             AccesUsuaris bd = new AccesUsuaris();
             String op = request.getParameter("accio");
             if (op.equals("login")) {
-                
                 System.out.println("Validando sin password llega al servlet?");
-                
-                String u = (String) request.getAttribute("romerito");
-                System.out.println(u);
-//                
-//                System.out.println("Usuari en servlet, login="+u);
-//                Usuari user=bd.validarUsuari(u);
-//                //passo el nom a la vista, benvinguda.jsp
-//                request.setAttribute("user", user);
-//                RequestDispatcher rd = request.getRequestDispatcher("benvinguda.jsp");
-//                rd.forward(request, response);
+                Usuari u = (Usuari) request.getAttribute("usu");
+                System.out.println("Usuari en servlet, login="+u);
+                Usuari user=bd.validarUsuari(u);
+                //passo el nom a la vista, benvinguda.jsp
+                request.setAttribute("user", user);
+                RequestDispatcher rd = request.getRequestDispatcher("benvinguda.jsp");
+                rd.forward(request, response);
             } else {
                 if (op.equals("registre")) {
                     Usuari u = (Usuari) request.getAttribute("usu");

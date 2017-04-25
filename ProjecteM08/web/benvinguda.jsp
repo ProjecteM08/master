@@ -1,9 +1,3 @@
-<%-- 
-    Document   : benvinguda
-    Created on : 04-abr-2017, 19:16:11
-    Author     : montse
---%>
-
 <%@page import="model.Usuari"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,7 +12,7 @@
         <%
         if(user.getAdmin().equals("T")){
          %>
-         <h1>Hola admin</h1>
+            <jsp:forward page="ControladorProductos"/> 
             <%  
         }else{
          %>
@@ -39,3 +33,6 @@
         
     </body>
 </html>
+
+         
+        
