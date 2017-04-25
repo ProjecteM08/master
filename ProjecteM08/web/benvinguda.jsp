@@ -16,6 +16,7 @@
             <%  
         }else{
          %>
+         
  <jsp:forward page="ControladorCompras"/>   
            <%    
         }

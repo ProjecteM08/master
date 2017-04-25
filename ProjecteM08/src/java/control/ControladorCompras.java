@@ -33,39 +33,21 @@ public class ControladorCompras extends HttpServlet {
             throws ServletException, IOException {
         try {
             
-              System.out.println("hola");
             
 response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        System.out.println("hola");
-            AccesUsuaris bd = new AccesUsuaris();
-            String op = request.getParameter("accio");
-            System.out.println("hola");
-            if (op.equals("login")) {
+        
+                AccesUsuaris bd = new AccesUsuaris();
+                Usuari u = (Usuari) request.getAttribute("usu");
+                Usuari user=bd.validarUsuari(u);
+
                 
-                System.out.println("Validando sin password llega al servlet?");
-                
-                String u = (String) request.getAttribute("romerito");
-                System.out.println(u);
-//                
-//                System.out.println("Usuari en servlet, login="+u);
-//                Usuari user=bd.validarUsuari(u);
-//                //passo el nom a la vista, benvinguda.jsp
-//                request.setAttribute("user", user);
-//                RequestDispatcher rd = request.getRequestDispatcher("benvinguda.jsp");
-//                rd.forward(request, response);
-            } else {
-                if (op.equals("registre")) {
-                    Usuari u = (Usuari) request.getAttribute("usu");
-                    bd.registrarUsuari(u);
-                    //només passo el nom a la vista, a benvinguda.jsp
-                    request.setAttribute("nom",u.getNom());
-                    RequestDispatcher rd = request.getRequestDispatcher("benvinguda.jsp");
-                    rd.forward(request, response);
-                }
-            }
+                request.setAttribute("user", user);
+                RequestDispatcher rd = request.getRequestDispatcher("comprar.jsp");
+                rd.forward(request, response);
+       
         } catch (Exception e) {
-            System.out.println("CONTROLADOR USUARIS!!!!!!" + e);
+            System.out.println("CONTROLADOR COMPRAS!!!!!" + e);
               System.out.println("hola");
             throw new ServletException(e);
             // System.out.println(e);
