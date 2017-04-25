@@ -16,12 +16,8 @@
             <%  
         }else{
          %>
-<<<<<<< Updated upstream
          
- <jsp:forward page="ControladorCompras"/>   
-=======
-            <jsp:forward page="ControladorCompras"/>   
->>>>>>> Stashed changes
+ <jsp:forward page="ControladorCompras?accio=login"/>   
            <%    
         }
         

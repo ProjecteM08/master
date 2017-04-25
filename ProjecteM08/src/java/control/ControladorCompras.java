@@ -33,8 +33,11 @@ public class ControladorCompras extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-
-            response.setContentType("text/html;charset=UTF-8");
+            
+            String op = request.getParameter("accio");
+            if (op.equals("login")) {
+            
+             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
 
             AccesUsuaris bd = new AccesUsuaris();
@@ -59,7 +62,15 @@ public class ControladorCompras extends HttpServlet {
             request.setAttribute("juegos", listajuegos);
 
             RequestDispatcher rd = request.getRequestDispatcher("comprar.jsp");
-            rd.forward(request, response);
+            rd.forward(request, response); 
+            }
+           
+             if (op.equals("comprar")) {
+             String id = request.getParameter("idjuego");
+                 System.out.println(id);
+             
+             
+             }
 
         } catch (Exception e) {
             System.out.println("CONTROLADOR COMPRAS!!!!!" + e);

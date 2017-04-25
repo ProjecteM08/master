@@ -13,25 +13,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="container">
-              <% Usuari user = (Usuari) request.getAttribute("user");%>
-        <% List<Juego> juegos = (List<Juego>) request.getAttribute("juegos");%>
-
-
-        Tu saldo: <%=user.getDinero()%>
-
-        Lista de juegos:
-
-        <%
-            for (Juego joc : juegos) {
-                %>
-                <div class="form-group"><%=joc.getNom()%></div>
-                <img class="form-group" src="<%=joc.getUrl()%>" height="250" width="250">
-                <div class="form-group"><%=joc.getPrecio()%></div>
-                <a href="comprados?accio=comprar&idjuego=<%=joc.getIdjuego()%>" class="btn btn-info" role="button">Comprar</a>
-                <%
-            }
-        %>  
+hola
         </div>
     </body>
 </html>
