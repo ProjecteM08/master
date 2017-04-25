@@ -13,19 +13,21 @@
         <title>Benvinguda</title>
     </head>
     <body>
-        <% Usuari user=(Usuari)request.getAttribute("user");
-        
-        %>
+        <% Usuari user=(Usuari)request.getAttribute("user");%>
      
         <%
         if(user.getAdmin().equals("T")){
          %>
-         
-         
          <h1>Hola admin</h1>
             <%  
         }else{
          %>
+            <jsp:setProperty name="romerito" property="*" />
+             <form method="post">
+            nom<input type="text" name="nombre" size="20" required/><br/>
+            password    <input type="password" name="apellido" size="20"  required/> <br/>
+            <input type="submit" value="Entrar"/>
+        </form>
           <jsp:forward page="ControladorCompras?accio=login"/> 
            <%    
         }
