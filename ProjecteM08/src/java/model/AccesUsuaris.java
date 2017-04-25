@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 /**
  * Classe que gestiona la connexió a un SGBDR MySQL La taula on es guarden les
@@ -66,6 +67,18 @@ public class AccesUsuaris {
         }
     }
 
+    /**
+     *
+     */
+    public ResultSet GetJuegos() throws SQLException{
+
+     String text = "select * from juegos";
+     ResultSet res = sentencia.executeQuery(text);
+     return res;
+     
+}
+    
+    
     /* donar d'alta un nou usuari*/
     public void registrarUsuari(Usuari u) throws UsuariRepetitException {
         try {
