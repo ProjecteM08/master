@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.AccesUsuaris;
+import model.Juego;
 import model.Usuari;
 
 
@@ -34,7 +35,11 @@ public class ControladorProductos extends HttpServlet {
         Usuari usu = (Usuari) request.getAttribute("usu");
         System.out.println("ControladorProductos");
         if(usu != null){
-            System.out.println(usu.getNom());
+            System.out.println(usu.toString());
+        }
+        Juego j = (Juego) request.getAttribute("juego");
+        if(j != null){
+            System.out.println(j.toString());
         }
     }
         // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
