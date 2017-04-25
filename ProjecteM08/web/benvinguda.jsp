@@ -26,8 +26,7 @@
             <%  
         }else{
          %>
-         
-          <h1>Hola parguela</h1>
+          <jsp:forward page="ControladorCompras?accio=login"/> 
            <%    
         }
         
