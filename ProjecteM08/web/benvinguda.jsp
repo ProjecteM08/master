@@ -14,8 +14,14 @@
     </head>
     <body>
         <% Usuari user=(Usuari)request.getAttribute("user");
-        if(user.getAdmin()=="T"){
+        
+        %>
+     
+        <%
+        if(user.getAdmin().equals("T")){
          %>
+         
+         
          <h1>Hola admin</h1>
             <%  
         }else{
@@ -28,5 +34,7 @@
 
         %>
        
+        
+        
     </body>
 </html>
