@@ -10,7 +10,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ControladorProductos</servlet-name>
-        <servlet-class>ControladorProductos</servlet-class>
+        <servlet-class>control.ControladorProductos</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControladorProductos</servlet-name>
@@ -18,7 +18,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ControladorCompras</servlet-name>
-        <servlet-class>ControladorCompras</servlet-class>
+        <servlet-class>control.ControladorCompras</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControladorCompras</servlet-name>

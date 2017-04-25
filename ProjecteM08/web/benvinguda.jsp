@@ -16,13 +16,7 @@
             <%  
         }else{
          %>
-            <jsp:setProperty name="romerito" property="*" />
-             <form method="post">
-            nom<input type="text" name="nombre" size="20" required/><br/>
-            password    <input type="password" name="apellido" size="20"  required/> <br/>
-            <input type="submit" value="Entrar"/>
-        </form>
-          <jsp:forward page="ControladorCompras?accio=login"/> 
+ <jsp:forward page="ControladorCompras"/>   
            <%    
         }
         

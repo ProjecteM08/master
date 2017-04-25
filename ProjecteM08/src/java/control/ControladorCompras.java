@@ -32,11 +32,15 @@ public class ControladorCompras extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            
+              System.out.println("hola");
+            
 response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+        System.out.println("hola");
             AccesUsuaris bd = new AccesUsuaris();
             String op = request.getParameter("accio");
+            System.out.println("hola");
             if (op.equals("login")) {
                 
                 System.out.println("Validando sin password llega al servlet?");
@@ -62,6 +66,7 @@ response.setContentType("text/html;charset=UTF-8");
             }
         } catch (Exception e) {
             System.out.println("CONTROLADOR USUARIS!!!!!!" + e);
+              System.out.println("hola");
             throw new ServletException(e);
             // System.out.println(e);
         }
