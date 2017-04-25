@@ -20,13 +20,11 @@
         <%
         if(user.getAdmin().equals("T")){
          %>
-         
-         
-         <h1>Hola admin</h1>
+            <jsp:forward page="ControladorProductos"/> 
             <%  
         }else{
          %>
-          <jsp:forward page="ControladorCompras?accio=login"/> 
+            <jsp:forward page="ControladorCompras?accio=login"/> 
            <%    
         }
         

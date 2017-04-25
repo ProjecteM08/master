@@ -9,6 +9,22 @@
         <url-pattern>/ControladorUsuaris</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ControladorProductos</servlet-name>
+        <servlet-class>ControladorProductos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ControladorProductos</servlet-name>
+        <url-pattern>/ControladorProductos</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ControladorCompras</servlet-name>
+        <servlet-class>ControladorCompras</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ControladorCompras</servlet-name>
+        <url-pattern>/ControladorCompras</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>TestServlet</servlet-name>
         <jsp-file>/login.jsp</jsp-file>
     </servlet>
