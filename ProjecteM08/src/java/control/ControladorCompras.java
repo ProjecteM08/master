@@ -66,8 +66,18 @@ public class ControladorCompras extends HttpServlet {
             }
            
              if (op.equals("comprar")) {
-             String id = request.getParameter("idjuego");
-                 System.out.println(id);
+             String idjuego =(String) request.getParameter("idjuego");
+             String iduser = (String)request.getParameter("iduser");
+
+              AccesUsuaris bd = new AccesUsuaris();
+                Usuari user =bd.getUser(iduser);
+                Juego joc=bd.GetJuego(idjuego);
+                
+               request.setAttribute("user", user);
+            request.setAttribute("joc", joc);
+
+            RequestDispatcher rd = request.getRequestDispatcher("comprados.jsp");
+            rd.forward(request, response);
              
              
              }

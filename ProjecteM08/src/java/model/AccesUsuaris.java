@@ -27,10 +27,10 @@ public class AccesUsuaris {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUser("root");
         dataSource.setPassword("yato");
-       // dataSource.setServerName("elnomdelserver.org");
+        // dataSource.setServerName("elnomdelserver.org");
         dataSource.setDatabaseName("m8");
-        con=dataSource.getConnection();
-        sentencia=con.createStatement();
+        con = dataSource.getConnection();
+        sentencia = con.createStatement();
     }
 //    public AccesUsuaris() throws Exception {
 //
@@ -42,27 +42,29 @@ public class AccesUsuaris {
     //retorna el nom de l'usuari valid
     public Usuari validarUsuari(Usuari u) throws UsuariInexistentException, PasswordIncorrecteException, SQLException {
         //filtrar getNom() d'entrada "maliciosa"        
-        String text = "select * from usuaris where nom='" + u.getNom()+ "'";
+        String text = "select * from usuaris where nom='" + u.getNom() + "'";
         ResultSet res = sentencia.executeQuery(text);
 //        String p2 = getEncryptedPassword(u.getPassword());
 
-        if (res.next()) { /* si hi ha un registre*/
-            /* si coincideix la clau*/
+        if (res.next()) {
+            /* si hi ha un registre*/
+ /* si coincideix la clau*/
 
             if (!res.getString("password").equals(u.getPassword())) {
                 throw new PasswordIncorrecteException();
             } else {
-                Usuari user=new Usuari();
+                Usuari user = new Usuari();
                 user.setAdmin(res.getString("admin"));
                 user.setDinero(res.getDouble("dinero"));
                 user.setIdusuaris(res.getInt("idusuaris"));
                 user.setNom(res.getString("nom"));
                 user.setPassword(res.getString("password"));
-                
+
                 return user;
             }
         } else {
-            throw new UsuariInexistentException(); /* no hi ha registre, per tant, no hi ha usuari*/
+            throw new UsuariInexistentException();
+            /* no hi ha registre, per tant, no hi ha usuari*/
 
         }
     }
@@ -70,20 +72,61 @@ public class AccesUsuaris {
     /**
      *
      */
-    public ResultSet GetJuegos() throws SQLException{
+    public ResultSet GetJuegos() throws SQLException {
 
-     String text = "select * from juegos";
-     ResultSet res = sentencia.executeQuery(text);
-     return res;
-     
-}
+        String text = "select * from juegos";
+        ResultSet res = sentencia.executeQuery(text);
+        return res;
+
+    }
+
+    public Juego GetJuego(String p) throws SQLException{
+     String text = "select * from juegos where idjuego='" + p + "'";
+        ResultSet res = sentencia.executeQuery(text);
+
+        if (res.next()) {
+            /* si hi ha un registre*/
+ /* si coincideix la clau*/
+            Juego joc = new Juego();
+            
+            joc.setNom(res.getString("nom"));
+            joc.setPrecio(res.getDouble("precio"));
+            joc.setUrl(res.getString("url"));
+           
+
+            return joc;
+        }
+        return null;
     
     
+    
+    }
+    
+    
+    public Usuari getUser(String p) throws SQLException {
+        String text = "select * from usuaris where idusuaris='" + p + "'";
+        ResultSet res = sentencia.executeQuery(text);
+
+        if (res.next()) {
+            /* si hi ha un registre*/
+ /* si coincideix la clau*/
+            Usuari user = new Usuari();
+            user.setAdmin(res.getString("admin"));
+            user.setDinero(res.getDouble("dinero"));
+            user.setIdusuaris(res.getInt("idusuaris"));
+            user.setNom(res.getString("nom"));
+            user.setPassword(res.getString("password"));
+
+            return user;
+        }
+        return null;
+    }
+
     /* donar d'alta un nou usuari*/
     public void registrarUsuari(Usuari u) throws UsuariRepetitException {
         try {
 //            String p2 = getEncryptedPassword(u.getPassword());
-            String text = "insert into usuaris(password, nom, admin, dinero) values ('" + u.getPassword()+ "','" + u.getNom() + "','" + u.getAdmin()+ "','" + u.getDinero() + "')";
+            String text = "insert into usuaris(password, nom, admin, dinero) values ('" + u.getPassword() + "','" + u.getNom() + "','" + u.getAdmin() + "','" + u.getDinero() + "')";
             sentencia.executeUpdate(text);
         } catch (SQLException e) {
             System.out.println(e);

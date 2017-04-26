@@ -28,7 +28,7 @@
                 <div class="form-group"><%=joc.getNom()%></div>
                 <img class="form-group" src="<%=joc.getUrl()%>" height="250" width="250">
                 <div class="form-group"><%=joc.getPrecio()%></div>
-                <a href="/ProjecteM08/comprados.jsp?idjuego=<%=joc.getIdjuego()%>" class="btn btn-info" role="button">Comprar</a>
+                <a href="/ProjecteM08/comprados.jsp?idjuego=<%=joc.getIdjuego()%>&iduser=<%=user.getIdusuaris()%>" class="btn btn-info" role="button">Comprar</a>
 
                 <%
             }
