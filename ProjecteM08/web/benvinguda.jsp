@@ -12,12 +12,12 @@
         <%
         if(user.getAdmin().equals("T")){
          %>
-            <jsp:forward page="ControladorProductos"/> 
+            <jsp:forward page="/productos"/> 
             <%  
         }else{
          %>
          
- <jsp:forward page="ControladorCompras?accio=login"/>   
+            <jsp:forward page="ControladorCompras?accio=login"/>   
            <%    
         }
         
