@@ -5,24 +5,29 @@ package model;
  * @author montse
  */
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author montse
  * @version abril 2017
  */
+@Entity
+@Table(name = "juegos")
 public class Juego implements Serializable {
 
+    @Id
     private int idjuego;
     private String nom;
     private double precio;
     private String url;
 
-
     public Juego(String nom, double precio, String url) {
-this.nom=nom;
-this.precio=precio;
-this.url=url;
+        this.nom = nom;
+        this.precio = precio;
+        this.url = url;
     }
 
     public Juego() {
@@ -66,6 +71,4 @@ this.url=url;
         return "Juego{" + "idjuego=" + idjuego + ", nom=" + nom + ", precio=" + precio + ", url=" + url + '}';
     }
 
-   
 }
-

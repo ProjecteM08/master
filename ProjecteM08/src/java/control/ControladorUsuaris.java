@@ -32,7 +32,7 @@ public class ControladorUsuaris extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
             AccesUsuaris bd = new AccesUsuaris();
@@ -44,15 +44,17 @@ response.setContentType("text/html;charset=UTF-8");
                 Usuari user=bd.validarUsuari(u);
                 //passo el nom a la vista, benvinguda.jsp
                 request.setAttribute("user", user);
+                request.getSession().setAttribute("user", user);
                 RequestDispatcher rd = request.getRequestDispatcher("benvinguda.jsp");
                 rd.forward(request, response);
             } else {
                 if (op.equals("registre")) {
                     Usuari u = (Usuari) request.getAttribute("usu");
+                    u.setAdmin("F");
                     bd.registrarUsuari(u);
                     //només passo el nom a la vista, a benvinguda.jsp
                     request.setAttribute("nom",u.getNom());
-                    RequestDispatcher rd = request.getRequestDispatcher("benvinguda.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("benvinguda");
                     rd.forward(request, response);
                 }
             }

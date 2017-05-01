@@ -4,7 +4,10 @@
     Author     : Narref
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="model.Juego"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,8 +18,46 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body>
+        <jsp:include page="navbar_admin.jsp"/>
         <div class="container">
-            
+            <h1>Productos</h1>
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Imatge</th>
+                        <th>Nom</th>
+                        <th>Accions</th>
+                    </tr>
+                </thead>
+                <tbody>
+            <%
+            List<Juego> juegos = (List<Juego>) request.getAttribute("juegos");
+            for (Juego joc : juegos) {
+            %>
+                <!--<div class="row">
+                    <div class="col-md-3">
+                        <img class="img-responsive" src="<%=joc.getUrl()%>" height="250" width="250">
+                    </div>
+                    <div class="col-md-6">
+                        <h2><%=joc.getNom()%></h2>
+                    </div>
+                </div>-->
+                <tr>
+                    <td><img class="img-responsive" src="<%=joc.getUrl()%>" height="250" width="250" /></td>
+                    <td><h2><%=joc.getNom()%></h2></td>
+                    <td><a class="btn btn-danger" href="productos?accio=eliminar&id=<%=joc.getIdjuego()%>">Eliminar</a></td>
+                </tr>
+            <%
+            }
+            %>
+                </tbody>
+            </table>
+            <br/>
+        <div class="row">
+            <div class="col-md-3">
+                <a class="btn btn-success" href="productos?accio=anadir">Añadir Juego</a>
+            </div>
+        </div>
         </div>
     </body>
 </html>

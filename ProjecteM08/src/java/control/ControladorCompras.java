@@ -41,8 +41,9 @@ public class ControladorCompras extends HttpServlet {
             PrintWriter out = response.getWriter();
 
             AccesUsuaris bd = new AccesUsuaris();
-            Usuari u = (Usuari) request.getAttribute("usu");
-            Usuari user = bd.validarUsuari(u);
+            Usuari user = (Usuari) request.getSession().getAttribute("usu");
+            /*Usuari u = (Usuari) request.getAttribute("usu");
+            Usuari user = bd.validarUsuari(u);*/
 
             ResultSet juegos = bd.GetJuegos();
             List<Juego> listajuegos=new ArrayList<Juego>();

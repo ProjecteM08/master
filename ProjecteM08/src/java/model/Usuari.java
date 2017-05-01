@@ -5,14 +5,20 @@ package model;
  * @author montse
  */
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author montse
  * @version abril 2017
  */
+@Entity
+@Table(name = "usuaris")
 public class Usuari implements Serializable {
 
+    @Id
     private int idusuaris;
     private String password;
     private String nom;

@@ -4,6 +4,7 @@ package control;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import model.AccesUsuaris;
 import model.Juego;
 import model.Usuari;
+import model.dao.HibernateUtil;
+import model.dao.JuegoDAO;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 /**
@@ -32,16 +38,50 @@ public class ControladorProductos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuari usu = (Usuari) request.getAttribute("usu");
-        System.out.println("ControladorProductos");
-        if(usu != null){
-            System.out.println(usu.toString());
-        }
-        Juego j = (Juego) request.getAttribute("juego");
-        if(j != null){
-            System.out.println(j.toString());
+        Usuari user = (Usuari) request.getSession().getAttribute("user");
+        
+        JuegoDAO juegoDao = new JuegoDAO();
+        List<Juego> juegos = juegoDao.getAllJuegos();
+        request.setAttribute("juegos", juegos);
+        if(user != null){
+            String accio = request.getParameter("accio");
+            if("grabar".equals(accio)){
+                String nom = request.getParameter("nom");
+                String precio = request.getParameter("precio");
+                String url = request.getParameter("url");
+
+                Juego j = new Juego();
+                j.setNom(nom);
+                
+                try{
+                    j.setPrecio(Double.parseDouble(precio));
+                }catch(NumberFormatException nfe){}
+                
+                j.setUrl(url);
+                juegoDao.grabarJuego(j);
+
+                redireccionarPagina(request, response, "productos.jsp");
+            }else if("anadir".equals(accio)){
+                redireccionarPagina(request, response, "productos_afegir.jsp");
+            }else if("eliminar".equals(accio)){
+                Juego juego = new Juego();
+                String id = request.getParameter("id");
+                juego.setIdjuego(Integer.parseInt(id));
+                juegoDao.eliminarJuego(juego);
+                juegos = juegoDao.getAllJuegos();
+                request.setAttribute("juegos", juegos);
+                redireccionarPagina(request, response, "productos.jsp");
+            }else{
+                redireccionarPagina(request, response, "productos.jsp");
+            }
         }
     }
+    
+    private void redireccionarPagina(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException{
+        RequestDispatcher rd = request.getRequestDispatcher(url);
+        rd.forward(request, response); 
+    }
+    
         // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
         /**
          * Handles the HTTP <code>GET</code> method.
