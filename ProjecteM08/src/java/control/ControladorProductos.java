@@ -67,6 +67,7 @@ public class ControladorProductos extends HttpServlet {
                 Juego juego = new Juego();
                 String id = request.getParameter("id");
                 juego.setIdjuego(Integer.parseInt(id));
+                juego = juegoDao.getJuego(juego);
                 juegoDao.eliminarJuego(juego);
                 juegos = juegoDao.getAllJuegos();
                 request.setAttribute("juegos", juegos);

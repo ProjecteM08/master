@@ -19,16 +19,16 @@ public class JuegoDAO {
     
     public boolean grabarJuego(Juego juego){
         boolean inserted = true;
-
+        Session session = HibernateUtil.getSession();
+        Transaction trans = session.beginTransaction();
         try{
-            Session session = HibernateUtil.getSession();
-            Transaction trans = session.beginTransaction();
-            
             session.saveOrUpdate(juego);
             session.flush();
+            trans.commit();
         }catch(Exception e){
             e.printStackTrace();
             inserted = false;
+            trans.rollback();
         }
         
         return inserted;
@@ -54,7 +54,14 @@ public class JuegoDAO {
     
     public void eliminarJuego(Juego j){
         Session session = HibernateUtil.getSession();
-        session.delete(j);
+        Transaction trans = session.beginTransaction();
+        try{
+            session.delete(j);
+            trans.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            trans.rollback();
+        }
     }
     
     

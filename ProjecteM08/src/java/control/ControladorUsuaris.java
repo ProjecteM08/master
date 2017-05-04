@@ -37,25 +37,27 @@ public class ControladorUsuaris extends HttpServlet {
         
             AccesUsuaris bd = new AccesUsuaris();
             String op = request.getParameter("accio");
-            if (op.equals("login")) {
-                System.out.println("Validando sin password llega al servlet?");
-                Usuari u = (Usuari) request.getAttribute("usu");
-                System.out.println("Usuari en servlet, login="+u);
-                Usuari user=bd.validarUsuari(u);
-                //passo el nom a la vista, benvinguda.jsp
-                request.setAttribute("user", user);
-                request.getSession().setAttribute("user", user);
-                RequestDispatcher rd = request.getRequestDispatcher("benvinguda.jsp");
-                rd.forward(request, response);
-            } else {
-                if (op.equals("registre")) {
+            if(op != null){
+                if (op.equals("login")) {
+                    System.out.println("Validando sin password llega al servlet?");
                     Usuari u = (Usuari) request.getAttribute("usu");
-                    u.setAdmin("F");
-                    bd.registrarUsuari(u);
-                    //només passo el nom a la vista, a benvinguda.jsp
-                    request.setAttribute("nom",u.getNom());
-                    RequestDispatcher rd = request.getRequestDispatcher("benvinguda");
+                    System.out.println("Usuari en servlet, login="+u);
+                    Usuari user=bd.validarUsuari(u);
+                    //passo el nom a la vista, benvinguda.jsp
+                    request.setAttribute("user", user);
+                    request.getSession().setAttribute("user", user);
+                    RequestDispatcher rd = request.getRequestDispatcher("benvinguda.jsp");
                     rd.forward(request, response);
+                } else {
+                    if (op.equals("registre")) {
+                        Usuari u = (Usuari) request.getAttribute("usu");
+                        u.setAdmin("F");
+                        bd.registrarUsuari(u);
+                        //només passo el nom a la vista, a benvinguda.jsp
+                        request.setAttribute("nom",u.getNom());
+                        RequestDispatcher rd = request.getRequestDispatcher("benvinguda");
+                        rd.forward(request, response);
+                    }
                 }
             }
         } catch (Exception e) {

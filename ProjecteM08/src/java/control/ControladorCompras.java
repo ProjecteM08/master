@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import model.AccesUsuaris;
 import model.Juego;
 import model.Usuari;
+import model.dao.JuegoDAO;
+import model.dao.UsuariDAO;
 
 /**
  *
@@ -34,16 +36,17 @@ public class ControladorCompras extends HttpServlet {
             throws ServletException, IOException {
         try {
             
+            JuegoDAO juegosDao = new JuegoDAO();
+            UsuariDAO usuariDao = new UsuariDAO();
+
+            
             String op = request.getParameter("accio");
             if (op.equals("login")) {
             
-             response.setContentType("text/html;charset=UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
 
-            AccesUsuaris bd = new AccesUsuaris();
-            Usuari user = (Usuari) request.getSession().getAttribute("usu");
-            /*Usuari u = (Usuari) request.getAttribute("usu");
-            Usuari user = bd.validarUsuari(u);*/
+            /*AccesUsuaris bd = new AccesUsuaris();
 
             ResultSet juegos = bd.GetJuegos();
             List<Juego> listajuegos=new ArrayList<Juego>();
@@ -57,6 +60,14 @@ public class ControladorCompras extends HttpServlet {
                 joc.setUrl(juegos.getString("url"));
                 listajuegos.add(joc);
 
+            }*/
+            
+            Usuari user = (Usuari) request.getAttribute("user");
+            
+            List<Juego> listajuegos = juegosDao.getAllJuegos();
+            
+            if(user!=null){
+                user = usuariDao.getUsuari(user);
             }
 
             request.setAttribute("user", user);
@@ -70,16 +81,28 @@ public class ControladorCompras extends HttpServlet {
              String idjuego =(String) request.getParameter("idjuego");
              String iduser = (String)request.getParameter("iduser");
 
-              AccesUsuaris bd = new AccesUsuaris();
+              /*AccesUsuaris bd = new AccesUsuaris();
                 Usuari user =bd.getUser(iduser);
-                Juego joc=bd.GetJuego(idjuego);
-                
-               request.setAttribute("user", user);
-            request.setAttribute("joc", joc);
+                Juego joc=bd.GetJuego(idjuego);*/
+              
+            Usuari user = new Usuari();
+            user.setIdusuaris(Integer.parseInt(iduser));
+            user = usuariDao.getUsuari(user);
+            
+            Juego juego = new Juego();
+            juego.setIdjuego(Integer.parseInt(idjuego));
+            juego = juegosDao.getJuego(juego);
+            
+            if(juego.getPrecio() < user.getDinero()){
+                user.setDinero(user.getDinero()-juego.getPrecio());
+                usuariDao.grabarUsuari(user);
+            }
+                            
+            request.setAttribute("user", user);
+            request.setAttribute("joc", juego);
 
             RequestDispatcher rd = request.getRequestDispatcher("comprados.jsp");
             rd.forward(request, response);
-             
              
              }
 

@@ -13,7 +13,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body>
-
+        <jsp:include page="navbar.jsp"/>
+        <div class="container">
           <% String iduser=(String)request.getParameter("iduser");
            String idjuego =(String)request.getParameter("idjuego");
            Usuari user=(Usuari)request.getAttribute("user");
@@ -27,7 +28,8 @@
           <div class="form-group"><%=joc.getNom()%></div>
            <img class="form-group" src="<%=joc.getUrl()%>" height="250" width="250">
          
-           Te quedan <%=user.getDinero()-joc.getPrecio()%> creditos.
+           Te quedan <%=user.getDinero()%> creditos.
+        </div>
             <%  
         }else{
          %>

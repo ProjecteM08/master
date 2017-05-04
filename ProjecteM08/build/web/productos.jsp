@@ -26,6 +26,7 @@
                     <tr>
                         <th>Imatge</th>
                         <th>Nom</th>
+                        <th>Preu</th>
                         <th>Accions</th>
                     </tr>
                 </thead>
@@ -45,6 +46,7 @@
                 <tr>
                     <td><img class="img-responsive" src="<%=joc.getUrl()%>" height="250" width="250" /></td>
                     <td><h2><%=joc.getNom()%></h2></td>
+                    <td><h2><%=joc.getPrecio()%> €</h2></td>
                     <td><a class="btn btn-danger" href="productos?accio=eliminar&id=<%=joc.getIdjuego()%>">Eliminar</a></td>
                 </tr>
             <%

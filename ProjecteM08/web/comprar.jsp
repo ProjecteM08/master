@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="model.Usuari"%>
@@ -15,8 +16,21 @@
     <body>
         <jsp:include page="navbar.jsp"/>
         <div class="container">
-              <% Usuari user = (Usuari) request.getAttribute("user");%>
-        <% List<Juego> juegos = (List<Juego>) request.getAttribute("juegos");%>
+        <% 
+        Usuari user = new Usuari();
+        if(request.getSession().getAttribute("user") != null){
+            user = (Usuari) request.getSession().getAttribute("user");
+        }
+        
+        if(request.getAttribute("user") != null){
+             user = (Usuari) request.getAttribute("user");
+        }
+        
+        List<Juego> juegos = new ArrayList<Juego>();
+        if(request.getAttribute("juegos") != null){
+            juegos = (List<Juego>) request.getAttribute("juegos");
+        }
+        %>
 
 
         Tu saldo: <%=user.getDinero()%>
