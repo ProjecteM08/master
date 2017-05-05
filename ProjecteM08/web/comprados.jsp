@@ -23,7 +23,7 @@
                 if (user != null) {
             %>
             <div class="page-header">
-                <h1>Gracias per utilitzar els nostres serveis!</h1>
+                <h1>Gracies per utilitzar els nostres serveis!</h1>
             </div>
             <div class="row">
                 <div class="col-md-3">

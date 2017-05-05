@@ -17,6 +17,11 @@ import org.hibernate.Transaction;
  */
 public class JuegoDAO {
     
+    /**
+     *  Metodo para grabar videojuegos en la base de datos (tabla juegos)
+     * @param juego Juego que queremos grabar en la bd
+     * @return Boolean si se ha grabado o no
+     */
     public boolean grabarJuego(Juego juego){
         boolean inserted = true;
         Session session = HibernateUtil.getSession();
@@ -34,6 +39,11 @@ public class JuegoDAO {
         return inserted;
     }
     
+    /**
+     *  Obtener un juego de la base de datos 
+     * @param juego Le pasamos un objeto juego vacio con la id del juego a obtener
+     * @return Retornamos el juego de la base de datos
+     */
     public Juego getJuego(Juego juego){
         Session session = HibernateUtil.getSession();
         try {
@@ -43,6 +53,10 @@ public class JuegoDAO {
         return juego;
     }
     
+    /**
+     *  Obtener todos los juegos de la tabla
+     * @return Lista de juegos
+     */
     public List<Juego> getAllJuegos(){
         Session session = HibernateUtil.getSession();
         Query query = session.createQuery("from Juego");
@@ -52,11 +66,15 @@ public class JuegoDAO {
         return list;
     }
     
-    public void eliminarJuego(Juego j){
+    /**
+     *  Eliminar un juego de la tabla
+     * @param juego Juego que queremos eliminar de la bd (id informada)
+     */
+    public void eliminarJuego(Juego juego){
         Session session = HibernateUtil.getSession();
         Transaction trans = session.beginTransaction();
         try{
-            session.delete(j);
+            session.delete(juego);
             trans.commit();
         }catch(Exception e){
             e.printStackTrace();

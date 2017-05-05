@@ -17,6 +17,9 @@
     <body>
         <jsp:include page="navbar_admin.jsp"/>
         <div class="container">
+            <div class="page-header">
+                <h1>Afegir producte</h1>
+            </div>
             <form method="POST" action="?accio=grabar">
                 <div class="form-group">
                     <label for="nom">Nom: </label>

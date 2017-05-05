@@ -18,6 +18,11 @@ import org.hibernate.Transaction;
  */
 public class UsuariDAO {
 
+    /**
+     *  Metodo para grabar usuarios en la base de datos (tabla usuaris)
+     * @param usuari Usuario a grabar
+     * @return Boolean si se ha grabado o no
+     */
     public boolean grabarUsuari(Usuari usuari){
         boolean inserted = true;
         Session session = HibernateUtil.getSession();
@@ -35,6 +40,11 @@ public class UsuariDAO {
         return inserted;
     }
 
+    /**
+     * Obtener un usuario de la base de datos
+     * @param usuari Usuari que queremos obtener
+     * @return Le pasamos un objeto usuario vacio con la id del usuario a obtener)
+     */
     public Usuari getUsuari(Usuari usuari) {
         Session session = HibernateUtil.getSession();
         try {
@@ -45,6 +55,10 @@ public class UsuariDAO {
         return usuari;
     }
 
+    /**
+     * Obtener todos los usuarios de la tabla
+     * @return Lista Usuaris
+     */
     public List<Usuari> getAllUsuaris() {
         Session session = HibernateUtil.getSession();
         Query query = session.createQuery("from Usuari");
@@ -54,9 +68,20 @@ public class UsuariDAO {
         return list;
     }
 
+    /**
+     * Eliminar un usuario de la tabla
+     * @param usuari el usuario con la id informada (primero tenemos que cogerlo utilizando el metodo getUsuari)
+     */
     public void eliminarUsuari(Usuari usuari) {
         Session session = HibernateUtil.getSession();
-        session.delete(usuari);
+        Transaction trans = session.beginTransaction();
+        try{
+            session.delete(usuari);
+            trans.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            trans.rollback();
+        }
     }
 
 }
