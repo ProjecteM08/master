@@ -74,7 +74,7 @@
                     <hr class="colorgraph"><br>
 
                     <input class="form-control" placeholder="Email/Id" name="id" type="text" size="20" required>
-                    <input class="form-control" placeholder="Password" name="password" type="password" size="20" required>
+                    <input class="form-control" placeholder="Contrasenya" name="password" type="password" size="20" required>
                     <input class="form-control" placeholder="Nom" type="text" name="nom" size="40" required/>
                     <br/>
                     <button class="btn btn-lg btn-success btn-block" name="Submit" value="Login" type="Submit">Registrar</button>  			

@@ -15,34 +15,34 @@
     <body>
         <jsp:include page="navbar.jsp"/>
         <div class="container">
-          <% String iduser=(String)request.getParameter("iduser");
-           String idjuego =(String)request.getParameter("idjuego");
-           Usuari user=(Usuari)request.getAttribute("user");
-           Juego joc=(Juego)request.getAttribute("joc");
-          %>
-     
-        <%
-        if(user!=null){
-         %>
-         Hola <%=user.getNom()%>, has comprado:
-          <div class="form-group"><%=joc.getNom()%></div>
-           <img class="form-group" src="<%=joc.getUrl()%>" height="250" width="250">
-         
-           Te quedan <%=user.getDinero()%> creditos.
-        </div>
-            <%  
-        }else{
-         %>
-         
- <jsp:forward page="ControladorCompras?accio=comprar&iduser=<%=iduser%>&idjuego=<%=idjuego%>"/>   
-           <%    
-        }
-        
-
-        %>
-        
-        
-        
+            <% String iduser = (String) request.getParameter("iduser");
+                String idjuego = (String) request.getParameter("idjuego");
+                Usuari user = (Usuari) request.getAttribute("user");
+                Juego joc = (Juego) request.getAttribute("joc");
+                
+                if (user != null) {
+            %>
+            <div class="page-header">
+                <h1>Gracias per utilitzar els nostres serveis!</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="form-group" src="<%=joc.getUrl()%>" height="100%" width="100%">
+                </div>
+                <div class="col-md-9">
+                    <p>Hola <%=user.getNom()%>, has comprado:</p>
+                    <p><%=joc.getNom()%></p>
+                </div>
+            </div>
+            <p>Te quedan <%=user.getDinero()%> €</p>
+            <a class="btn btn-success" href="ControladorCompras?accio=login">Continua comprant</a>
+            <%
+            } else {
+            %>
+            <jsp:forward page="ControladorCompras?accio=comprar&iduser=<%=iduser%>&idjuego=<%=idjuego%>"/>   
+            <%
+                }
+            %>
         </div>
     </body>
 </html>

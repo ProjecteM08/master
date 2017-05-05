@@ -16,38 +16,55 @@
     <body>
         <jsp:include page="navbar.jsp"/>
         <div class="container">
-        <% 
-        Usuari user = new Usuari();
-        if(request.getSession().getAttribute("user") != null){
-            user = (Usuari) request.getSession().getAttribute("user");
-        }
-        
-        if(request.getAttribute("user") != null){
-             user = (Usuari) request.getAttribute("user");
-        }
-        
-        List<Juego> juegos = new ArrayList<Juego>();
-        if(request.getAttribute("juegos") != null){
-            juegos = (List<Juego>) request.getAttribute("juegos");
-        }
-        %>
+            <%
+                Usuari user = new Usuari();
+                if (request.getSession().getAttribute("user") != null) {
+                    user = (Usuari) request.getSession().getAttribute("user");
+                }
 
+                if (request.getAttribute("user") != null) {
+                    user = (Usuari) request.getAttribute("user");
+                }
 
-        Tu saldo: <%=user.getDinero()%>
-
-        Lista de juegos:
-
-        <%
-            for (Juego joc : juegos) {
-                %>
-                <div class="form-group"><%=joc.getNom()%></div>
-                <img class="form-group" src="<%=joc.getUrl()%>" height="250" width="250">
-                <div class="form-group"><%=joc.getPrecio()%></div>
-                <a href="/ProjecteM08/comprados.jsp?idjuego=<%=joc.getIdjuego()%>&iduser=<%=user.getIdusuaris()%>" class="btn btn-info" role="button">Comprar</a>
-
+                List<Juego> juegos = new ArrayList<Juego>();
+                if (request.getAttribute("juegos") != null) {
+                    juegos = (List<Juego>) request.getAttribute("juegos");
+                }
+            %>
+            <div class="page-header">
+                <h1>Videojocs</h1>
+            </div>
+            <h4>Saldo disponible: <%=user.getDinero()%> €</h4>
+            <%
+                for (int i = 0; i < juegos.size(); i++) {
+                    Juego joc = juegos.get(i);
+                    if (i == 0) {
+            %>
+            <div class="row">
                 <%
-            }
-        %>  
+                    }
+                %>
+                <div class="col-xs-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><%=joc.getNom()%></p>
+                            <img src="<%=joc.getUrl()%>" height="300" width="100%">
+                            <h5><%=joc.getPrecio()%> €</h5>
+                            <a  class="btn btn-info" role="button" href="/ProjecteM08/comprados.jsp?idjuego=<%=joc.getIdjuego()%>&iduser=<%=user.getIdusuaris()%>">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+                <%
+                    if ((i + 1) % 3 == 0) {
+                %>
+            </div>
+            <div class="row">
+                <%
+                        }
+                    }
+                %> 
+            </div>
+
         </div>
     </body>
 </html>

@@ -74,14 +74,14 @@
         <div class="container">
             <div class="wrapper">
                 <form method="post" class="form-signin">       
-                    <h3 class="form-signin-heading">Log In</h3>
+                    <h3 class="form-signin-heading">Iniciar sessió</h3>
                     <hr class="colorgraph"><br>
 
                     <input type="text" class="form-control" name="nom" placeholder="Username" required="" autofocus="" />
                     <input type="password" class="form-control" name="password" placeholder="Password" required=""/>     		  
 
-                    <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>  			
-                    <br/><a class="btn btn-success" href="registrar.jsp">Sign Up </a>
+                    <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit">Iniciar sessió</button>  			
+                    <br/><a class="btn btn-success" href="registrar.jsp">Registre </a>
                 </form>			
             </div>
         </div>

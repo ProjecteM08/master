@@ -16,15 +16,15 @@
                 <ul class="nav navbar-nav">
                     <!--<li class="active"><a href="#">Productos <span class="sr-only">(current)</span></a></li>-->
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productes <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="productos">Lista</a></li>
-                            <li><a href="productos?accio=anadir">Añadir productos</a></li>
+                            <li><a href="productos">Llista</a></li>
+                            <li><a href="productos?accio=anadir">Afegir productes</a></li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/ProjecteM08">Salir</a></li>
+                    <li><a href="/ProjecteM08">Sortir</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

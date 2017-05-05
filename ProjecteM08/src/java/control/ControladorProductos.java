@@ -59,6 +59,9 @@ public class ControladorProductos extends HttpServlet {
                 
                 j.setUrl(url);
                 juegoDao.grabarJuego(j);
+                
+                juegos = juegoDao.getAllJuegos();
+                request.setAttribute("juegos", juegos);
 
                 redireccionarPagina(request, response, "productos.jsp");
             }else if("anadir".equals(accio)){

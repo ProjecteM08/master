@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Productos</title>
+        <title>Productes</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -20,7 +20,7 @@
     <body>
         <jsp:include page="navbar_admin.jsp"/>
         <div class="container">
-            <h1>Productos</h1>
+            <h1>Productes</h1>
             <table class="table table-responsive table-hover">
                 <thead>
                     <tr>
@@ -57,7 +57,7 @@
             <br/>
         <div class="row">
             <div class="col-md-3">
-                <a class="btn btn-success" href="productos?accio=anadir">Añadir Juego</a>
+                <a class="btn btn-success" href="productos?accio=anadir">Afegir joc</a>
             </div>
         </div>
         </div>
